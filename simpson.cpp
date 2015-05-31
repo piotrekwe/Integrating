@@ -3,16 +3,16 @@
 
 using namespace std;
 
-
+// uwaga przy funkcjach trygonometrycznych wystepuje problem z radianami
 double func(double x)
 {
-    return pow(x, 1);
+    return sin(x);
 }
 
 long double simpson(double a, double b, int n) // całkowanie metodą Simpsona
 {
     long double area=0.0;
-    const double dx=(b-a)/(2*n); // dzielimy dx dodatkowo na 2 częsci
+    const double dx=(b-a)/(n); // dzielimy dx dodatkowo na 2 częsci, obserwacja: jezeli tutaj podzieimy przez 2 a dalej odpowiedniono pomnozymy to calka zbiega duzo gorzej
     double f_1, f_2, f_3;
     for(int i=0; i<n; i++)
     {
@@ -20,8 +20,8 @@ long double simpson(double a, double b, int n) // całkowanie metodą Simpsona
         f_2=func(a+dx/2);
         f_3=func(a+dx);
         
-        area+=(f_1 + 4*f_2 + f_3)*dx/3;
-        a+=dx;
+        area+=(f_1 + 4*f_2 + f_3)*dx/6;
+        a=a+dx;
     }
     
     return area;
@@ -30,7 +30,7 @@ long double simpson(double a, double b, int n) // całkowanie metodą Simpsona
 
 int main (void)
 {
-    int n=2000000;
+    int n=1e4;
     cout << "Value: " << simpson(0, M_PI, n) << " Parts: " << n <<endl;
     return 0;
 }
