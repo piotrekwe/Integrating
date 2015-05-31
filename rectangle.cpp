@@ -1,17 +1,17 @@
-#include <math.h>
-#include <stdio.h>
+#include <iostream>
+#include<cmath>
+
+using namespace std;
 
 double func(double x)
 {
     return sin(x);
 }
 
-
-
-double rectangle(double a, double b, int n) // całkowanie metodą prostokatow, midpoint
+long double rectangle(double a, double b, int n) // całkowanie metodą prostokatow, midpoint
 {
     const double dx = (b-a)/n;
-    double area=0.0;
+    long double area=0.0;
     double midpoint_value=0;
     for(int i=0; i<n; i++)
     {
@@ -25,8 +25,8 @@ double rectangle(double a, double b, int n) // całkowanie metodą prostokatow, 
 
 int main (void)
 {
-    int n=100;
-    printf("value: %f devided into: %d \n", rectangle( 0, M_PI, n), n);
-    
+    int n=10000000;
+    cout << "value: " << rectangle(0, M_PI, n) << " Part: " << n << endl;
+
     return 0;
 }
